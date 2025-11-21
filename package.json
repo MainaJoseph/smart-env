@@ -1,6 +1,6 @@
 {
   "name": "smart-env-plus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Professional environment variable validation with strict type checking for Node.js and TypeScript",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

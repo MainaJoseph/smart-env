@@ -1,8 +1,8 @@
 # smart-env
 
 [![CI](https://github.com/MainaJoseph/smart-env/workflows/CI/badge.svg)](https://github.com/MainaJoseph/smart-env/actions)
-[![npm version](https://img.shields.io/npm/v/smart-env.svg)](https://www.npmjs.com/package/smart-env)
-[![npm downloads](https://img.shields.io/npm/dm/smart-env.svg)](https://www.npmjs.com/package/smart-env)
+[![npm version](https://img.shields.io/npm/v/smart-env-plus.svg)](https://www.npmjs.com/package/smart-env-plus)
+[![npm downloads](https://img.shields.io/npm/dm/smart-env-plus.svg)](https://www.npmjs.com/package/smart-env-plus)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Professional environment variable validation with strict type checking for Node.js and TypeScript.
@@ -22,7 +22,7 @@ Prevent runtime errors caused by missing or invalid environment variables by val
 ## Installation
 
 ```bash
-npm install smart-env
+npm install smart-env-plus
 ```
 
 ## Quick Start
@@ -1218,4 +1218,4 @@ MIT
 
 - Documentation: [GitHub README](https://github.com/MainaJoseph/smart-env)
 - Issues: [GitHub Issues](https://github.com/MainaJoseph/smart-env/issues)
-- NPM: [npm package](https://www.npmjs.com/package/smart-env)
+- NPM: [npm package](https://www.npmjs.com/package/smart-env-plus)

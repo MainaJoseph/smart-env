@@ -17,12 +17,20 @@ Prevent runtime errors caused by missing or invalid environment variables by val
 - **Zero-Config**: Works out of the box with sensible defaults
 - **CLI Tools**: Initialize projects and validate configurations
 - **Framework Agnostic**: Works with Express, NestJS, Next.js, Fastify, and more
+- **Package Manager Support**: Works with npm, yarn, and pnpm
 - **Flexible**: Support for required/optional variables, defaults, and custom validation rules
 
 ## Installation
 
 ```bash
+# npm
 npm install smart-env-plus
+
+# yarn
+yarn add smart-env-plus
+
+# pnpm
+pnpm add smart-env-plus
 ```
 
 ## Quick Start
@@ -30,7 +38,14 @@ npm install smart-env-plus
 ### 1. Initialize
 
 ```bash
-npx smart-env init
+# npm
+npx smart-env-plus init
+
+# yarn
+yarn smart-env-plus init
+
+# pnpm
+pnpm smart-env-plus init
 ```
 
 This creates:
@@ -81,7 +96,14 @@ app.listen(env.PORT);
 ### 4. Validate
 
 ```bash
-npx smart-env validate
+# npm
+npx smart-env-plus validate
+
+# yarn
+yarn smart-env-plus validate
+
+# pnpm
+pnpm smart-env-plus validate
 ```
 
 ## API Reference
@@ -274,23 +296,37 @@ NODE_ENV: {
 
 ## CLI Commands
 
-### `smart-env init`
+### `smart-env-plus init`
 
 Initialize smart-env in your project.
 
 ```bash
-npx smart-env init [options]
+# npm
+npx smart-env-plus init [options]
+
+# yarn
+yarn smart-env-plus init [options]
+
+# pnpm
+pnpm smart-env-plus init [options]
 
 Options:
   -f, --force    Overwrite existing files
 ```
 
-### `smart-env validate`
+### `smart-env-plus validate`
 
 Validate environment variables against your schema.
 
 ```bash
-npx smart-env validate [options]
+# npm
+npx smart-env-plus validate [options]
+
+# yarn
+yarn smart-env-plus validate [options]
+
+# pnpm
+pnpm smart-env-plus validate [options]
 
 Options:
   -c, --config <path>    Path to env.config.ts
@@ -298,12 +334,19 @@ Options:
   -v, --verbose          Show detailed output
 ```
 
-### `smart-env scan`
+### `smart-env-plus scan`
 
 Scan your project for `process.env` usage.
 
 ```bash
-npx smart-env scan
+# npm
+npx smart-env-plus scan
+
+# yarn
+yarn smart-env-plus scan
+
+# pnpm
+pnpm smart-env-plus scan
 ```
 
 This finds all environment variable references in your codebase to help you create a complete schema.
@@ -533,10 +576,23 @@ Update your `package.json`:
 {
   "scripts": {
     "dev": "next dev",
-    "build": "smart-env validate && next build",
+    "build": "smart-env-plus validate && next build",
     "start": "next start"
   }
 }
+```
+
+Then run with your preferred package manager:
+
+```bash
+# npm
+npm run build
+
+# yarn
+yarn build
+
+# pnpm
+pnpm build
 ```
 
 This ensures environment errors are caught at build time!
@@ -768,13 +824,20 @@ Validate environment at build time:
 FROM node:18-alpine
 WORKDIR /app
 
+# Copy package files (supports npm, yarn, or pnpm)
 COPY package*.json ./
+# COPY yarn.lock ./    # Uncomment if using yarn
+# COPY pnpm-lock.yaml ./    # Uncomment if using pnpm
+
+# Install dependencies (choose one)
 RUN npm ci
+# RUN yarn install --frozen-lockfile    # For yarn
+# RUN pnpm install --frozen-lockfile    # For pnpm
 
 COPY . .
 
 # Validate environment during build
-RUN npx smart-env validate || exit 1
+RUN npx smart-env-plus validate || exit 1
 
 RUN npm run build
 EXPOSE 3000
@@ -797,9 +860,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'    # or 'yarn' or 'pnpm'
+
+      # Using npm
       - run: npm ci
-      - run: npx smart-env validate
+      - run: npx smart-env-plus validate
       - run: npm test
+
+      # Or using yarn
+      # - run: yarn install --frozen-lockfile
+      # - run: yarn smart-env-plus validate
+      # - run: yarn test
+
+      # Or using pnpm
+      # - run: pnpm install --frozen-lockfile
+      # - run: pnpm smart-env-plus validate
+      # - run: pnpm test
 ```
 
 ## Common Use Cases
@@ -1159,6 +1236,33 @@ describe('App configuration', () => {
 6. **Validate in CI/CD** - Catch configuration errors before deployment
 7. **Keep secrets secret** - Never commit `.env` files
 
+## Package Manager Support
+
+smart-env-plus works seamlessly with all major Node.js package managers:
+
+### npm
+
+```bash
+npm install smart-env-plus
+npx smart-env-plus init
+```
+
+### Yarn (v1, v2, v3+)
+
+```bash
+yarn add smart-env-plus
+yarn smart-env-plus init
+```
+
+### pnpm
+
+```bash
+pnpm add smart-env-plus
+pnpm smart-env-plus init
+```
+
+All package managers support the same CLI commands and features!
+
 ## TypeScript Support
 
 smart-env provides full type inference:
@@ -1188,6 +1292,22 @@ import { env } from './env.config';
 const port = env.PORT; // Already a number with default 3000
 ```
 
+**Installation:**
+
+```bash
+# npm
+npm uninstall dotenv
+npm install smart-env-plus
+
+# yarn
+yarn remove dotenv
+yarn add smart-env-plus
+
+# pnpm
+pnpm remove dotenv
+pnpm add smart-env-plus
+```
+
 ### From envalid
 
 ```typescript
@@ -1204,6 +1324,22 @@ const env = createEnv({
   PORT: { type: 'number', default: 3000 },
   API_KEY: { type: 'string', required: true }
 });
+```
+
+**Installation:**
+
+```bash
+# npm
+npm uninstall envalid
+npm install smart-env-plus
+
+# yarn
+yarn remove envalid
+yarn add smart-env-plus
+
+# pnpm
+pnpm remove envalid
+pnpm add smart-env-plus
 ```
 
 ## Contributing

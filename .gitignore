@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+coverage/
+.vscode/
+.idea/
+
+# Local test files
+test-nextjs.js
+
+# AI development documentation
+CLAUDE.md

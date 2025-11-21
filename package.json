@@ -1,0 +1,75 @@
+{
+  "name": "smart-env",
+  "version": "1.0.0",
+  "description": "Professional environment variable validation with strict type checking for Node.js and TypeScript",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "smart-env": "./bin/smart-env.js"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src/**/*.ts",
+    "prepublishOnly": "npm run build",
+    "ci:check-build": "node scripts/check-build.js",
+    "ci:check-size": "node scripts/check-size.js"
+  },
+  "keywords": [
+    "environment",
+    "env",
+    "validation",
+    "typescript",
+    "config",
+    "dotenv",
+    "type-safe",
+    "environment-variables"
+  ],
+  "author": "Joseph Maina",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MainaJoseph/smart-env.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MainaJoseph/smart-env/issues"
+  },
+  "homepage": "https://github.com/MainaJoseph/smart-env#readme",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/node": "^20.11.5",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "eslint": "^8.56.0",
+    "rollup": "^4.9.6",
+    "rollup-plugin-dts": "^6.1.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.1"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "dotenv": "^16.4.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
